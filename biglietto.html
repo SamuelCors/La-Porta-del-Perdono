@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>La Porta del Perdono - Biglietto di Invito</title>
+    <style>
+        /* Stile generale */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Blood Drip Effect */
+        .blood-drip {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .blood-drip::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 20px;
+            background-color: #ff0000;
+            border-radius: 2px;
+            animation: drip 3s linear infinite;
+            transform: translateY(-100%);
+        }
+
+        @keyframes drip {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Blood Splatter Effect */
+        .blood-splatter {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-image: radial-gradient(circle, #ff0000 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.3;
+            }
+        }
+
+        /* Container principale */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .rsvp-button {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: 2px solid #ff0000;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rsvp-button:hover {
+            background-color: #ff0000;
+            transform: scale(1.05);
+        }
+
+        .rsvp-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-button:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Biglietto */
+        .ticket {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://www.cinemaitaliano.info/show_img.php?type=fotofilm&id=53979&resize=yes&wi=300&he=200&version=2.4.3&version=2.4.3');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 400px; /* Modifica l'altezza secondo le tue preferenze */
+            border: 2px solid #ff0000;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ticket::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7); /* Regola il primo valore per l'opacità dell'overlay */
+        }
+
+        /* Informazioni biglietto */
+        .ticket-info {
+            position: relative;
+            z-index: 1;
+            color: #fff;
+            text-align: center;
+        }
+
+        .ticket-title {
+            font-size: 2rem;
+            color: #ff0000;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-details {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Codice a barre */
+        .barcode {
+            width: 100%;
+            height: 100px;
+            background-image: repeating-linear-gradient(90deg, #ff0000 0, #ff0000 2px, transparent 2px, transparent 4px);
+            margin: 2rem 0;
+        }
+
+        /* Pulsante di ritorno */
+        .back-button {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: 2px solid #ff0000;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            margin-top: 2rem;
+        }
+
+        .back-button:hover {
+            background-color: #ff0000;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Effetti di sangue -->
+    <div class="blood-drip" style="top: 10%; left: 20%;"></div>
+    <div class="blood-drip" style="top: 30%; left: 60%;"></div>
+    <div class="blood-drip" style="top: 70%; left: 80%;"></div>
+
+    <!-- Blood splatter effects -->
+    <div class="blood-splatter" style="position: absolute; top: 20%; left: 40%;"></div>
+    <div class="blood-splatter" style="position: absolute; top: 50%; right: 20%;"></div>
+    <div class="blood-splatter" style="position: absolute; bottom: 30%; left: 10%;"></div>
+
+    <div class="container">
+        <div class="ticket">
+            <div class="ticket-info">
+                <h2 class="ticket-title">BIGLIETTO DI INVITO</h2>
+                <p class="ticket-details">
+                    <strong>Nome:</strong> <span id="participant-name">[Nome del partecipante]</span><br>
+                    <strong>Evento:</strong> La Porta del Perdono - Proiezione Speciale<br>
+                    <strong>Data:</strong> 10 Maggio 2025<br>
+                    <strong>Ora:</strong> 17:30<br>
+                    <strong>Luogo:</strong> Parco Borbonico del Fusaro<br>
+                    <strong>Regista:</strong> Samuel Corsaro
+                </p>
+                <div class="barcode"></div>
+            </div>
+        </div>
+
+        <button class="rsvp-button" onclick="window.location.href='index.html'">Torna alla Home</button>
+    </div>
+
+    <script>
+        // Recupera il nome dall'archiviazione locale e aggiorne l'elemento della pagina
+        window.onload = function() {
+            const name = localStorage.getItem('participantName');
+            if (name) {
+                document.getElementById('participant-name').textContent = name;
+            }
+        };
+    </script>
+</body>
+</html>

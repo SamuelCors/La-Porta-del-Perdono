@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>La Porta del Perdono - Serata di Proiezione</title>
+    <style>
+        /* Stile generale */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Blood Drip Effect */
+        .blood-drip {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .blood-drip::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 20px;
+            background-color: #ff0000;
+            border-radius: 2px;
+            animation: drip 3s linear infinite;
+            transform: translateY(-100%);
+        }
+
+        @keyframes drip {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Blood Splatter Effect */
+        .blood-splatter {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-image: radial-gradient(circle, #ff0000 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.3;
+            }
+        }
+
+        /* Container principale */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            text-align: center;
+        }
+
+        /* Titolo */
+        .title {
+            font-size: 4rem;
+            color: #ff0000;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            animation: flicker 1.5s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow: 0 0 10px #ff0000;
+            }
+            20%, 24%, 55% {
+                text-shadow: none;
+            }
+        }
+
+        /* Informazioni evento */
+        .event-info {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 2px solid #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .date {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ff0000;
+        }
+
+        /* Pulsante RSVP */
+        .rsvp-button {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: 2px solid #ff0000;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rsvp-button:hover {
+            background-color: #ff0000;
+            transform: scale(1.05);
+        }
+
+        .rsvp-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .rsvp-button:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Sinossi */
+        .synopsis {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Countdown */
+        .countdown {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: #ff0000;
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            text-align: center;
+            border-top: 2px solid #ff0000;
+            margin-top: auto;
+        }
+
+        /* skulls */
+        .skull {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Effetti di allineamento centrale */
+        .centered-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-content">
+        <!-- Ilblood drip effectFFESSIONAL-->
+        <div class="blood-drip" style="top: 10%; left: 20%;"></div>
+        <div class="blood-drip" style="top: 30%; left: 60%;"></div>
+        <div class="blood-drip" style="top: 70%; left: 80%;"></div>
+
+        <!-- Blood splatter effects -->
+        <div class="blood-splatter" style="position: absolute; top: 20%; left: 40%;"></div>
+        <div class="blood-splatter" style="position: absolute; top: 50%; right: 20%;"></div>
+        <div class="blood-splatter" style="position: absolute; bottom: 30%; left: 10%;"></div>
+
+        <div class="container">
+            <h1 class="title">LA PORTA DEL PERDONO</h1>
+
+            <div class="event-info">
+                <div class="date">
+                    <h2>10 Maggio 2025</h2>
+                    <h3>Alle ore 17:30</h3>
+                    <h3>Parco Borbonico del Fusaro</h3>
+                </div>
+
+                <div class="countdown" id="countdown">
+                    <!-- Il countdown verrà aggiornato con JavaScript -->
+                </div>
+
+                <button class="rsvp-button" onclick="window.location.href='nome.html'">PARTECIPA ALLA PROIEZIONE</button>
+            </div>
+
+            <div class="synopsis">
+                <p>La Porta del Perdono non è solo una storia di un rapporto spezzato, ma un racconto di redenzione e riconciliazione con sé stessi. Il viaggio di Samuel verso la "porta finale". Riuscirà Samuel a trovare la pace dentro di sé e a liberarsi dagli incubi che lo tormentano?</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Regia: Samuel Corsaro </p>
+            <p>Contatti: samuelcorsarocinema@gmail.com</p>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const eventDate = new Date('2025-05-10T17:30:00').getTime();
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('countdown').innerHTML = 
+                    `${days} giorni, ${hours} ore, ${minutes} minuti e ${seconds} secondi al evento!`;
+            } else {
+                document.getElementById('countdown').innerHTML = "L'evento è già iniziato!";
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Aggiungi sangue che cola periodicamente
+        setInterval(() => {
+            const bloodDrip = document.createElement('div');
+            bloodDrip.className = 'blood-drip';
+            // Scegli una posizione casuale per il sangue
+            bloodDrip.style.top = Math.random() * 100 + '%';
+            bloodDrip.style.left = Math.random() * 100 + '%';
+            document.body.appendChild(bloodDrip);
+            
+            // Rimuovi il sangue dopo l'animazione
+            setTimeout(() => {
+                bloodDrip.remove();
+            }, 3000);
+        }, 5000);
+
+        // Effetti sonori casuali
+        setInterval(() => {
+            const randomUrlo = Math.random();
+            if (randomUrlo < 0.05) { // 5% di probabilità ogni 5 secondi
+                const audio = new Audio('https://www.soundjay.com/human/sounds/woman-screaming-01.mp3');
+                audio.play();
+            }
+        }, 5000);
+
+        // Teschio che si anima
+        const skull = document.querySelector('.skull');
+        setInterval(() => {
+            skull.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
+        }, 2000);
+    </script>
+</body>
+</html>

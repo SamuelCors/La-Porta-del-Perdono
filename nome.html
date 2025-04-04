@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>La Porta del Perdono - Registrazione</title>
+    <style>
+        /* Stile generale */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Blood Drip Effect */
+        .blood-drip {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .blood-drip::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 20px;
+            background-color: #ff0000;
+            border-radius: 2px;
+            animation: drip 3s linear infinite;
+            transform: translateY(-100%);
+        }
+
+        @keyframes drip {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Blood Splatter Effect */
+        .blood-splatter {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-image: radial-gradient(circle, #ff0000 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.3;
+            }
+        }
+
+        /* Container principale */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            text-align: center;
+        }
+
+        /* Modulo di registrazione */
+        .registration-form {
+            margin: 10% auto;
+            padding: 20px;
+        }
+
+        /* Titolo */
+        .registration-title {
+            font-size: 2rem;
+            color: #ff0000;
+            margin-bottom: 2rem;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1rem;
+            background-color: #1a1a1a;
+            border: 2px solid #ff0000;
+            color: #fff;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+        }
+
+        button {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+            transform: scale(1.05);
+        }
+
+        /* Error message */
+        .error {
+            color: #ff0000;
+            margin-top: 1rem;
+        }
+
+        /* Success message */
+        .success {
+            color: #00ff00;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Effetti di sangue -->
+    <div class="blood-drip" style="top: 10%; left: 20%;"></div>
+    <div class="blood-drip" style="top: 30%; left: 60%;"></div>
+    <div class="blood-drip" style="top: 70%; left: 80%;"></div>
+
+    <!-- Blood splatter effects -->
+    <div class="blood-splatter" style="position: absolute; top: 20%; left: 40%;"></div>
+    <div class="blood-splatter" style="position: absolute; top: 50%; right: 20%;"></div>
+    <div class="blood-splatter" style="position: absolute; bottom: 30%; left: 10%;"></div>
+
+    <div class="container">
+        <h1 class="registration-title">REGISTRAZIONE OBBLIGATORIA</h1>
+        <form class="registration-form" id="registrationForm">
+            <div class="form-group">
+                <input type="text" id="nome" placeholder="Nome" required>
+            </div>
+            <div class="form-group">
+                <input type="text" id="cognome" placeholder="Cognome" required>
+            </div>
+            <button type="submit">CONFERMA E PROSEGUE</button>
+        </form>
+    </div>
+
+    <script>
+        // Recupera i dati e reindirizza al biglietto
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Verifica se i campi sono compilati
+            const nome = document.getElementById('nome').value;
+            const cognome = document.getElementById('cognome').value;
+
+            if (nome && cognome) {
+                // Salva i dati in localStorage
+                localStorage.setItem('participantName', nome + ' ' + cognome);
+                window.location.href = 'biglietto.html';
+            } else {
+                alert('Si prega di compilare tutti i campi');
+            }
+        });
+    </script>
+</body>
+</html>
